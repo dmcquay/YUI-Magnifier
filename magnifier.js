@@ -35,7 +35,7 @@ YAHOO.extension.Magnifier = function(anchor, magnifierCfg, lensCfg, cursorCfg) {
 	if (typeof(lensCfg) == 'undefined') { lensCfg = {}; }
 	if (typeof(lensCfg.showDelay) == 'undefined') { lensCfg.showDelay = this.cfg.getProperty("showDelay"); }
 	if (typeof(lensCfg.imageUrl) == 'undefined') { lensCfg.imageUrl = anchor.href; }
-    if (typeof(lensCfg.context) == 'undefined') { lensCfg.context = [ anchor, 'tl', 'tr' ]; }
+	if (typeof(lensCfg.context) == 'undefined') { lensCfg.context = [ anchor, 'tl', 'tr' ]; }
 	//TODO: allow this id to be configurable
 	this.lens = new YAHOO.extension.MagnifierLens(YAHOO.util.Dom.generateId(), lensCfg);
 	this.lens.render(document.body);
@@ -138,7 +138,7 @@ YAHOO.extension.Magnifier.prototype = {
 */
 YAHOO.extension.MagnifierLens = function(el, lensCfg) {
 
-    if (!lensCfg) lensCfg = {};
+	if (!lensCfg) lensCfg = {};
 
 	// override config defaults. these will be the new defaults.
 	lensCfg.width = lensCfg.width || '300px';
@@ -150,7 +150,7 @@ YAHOO.extension.MagnifierLens = function(el, lensCfg) {
 	lensCfg.underlay = 'none';
 	//lensCfg.effect = { effect: this.customFade };
 	
-    YAHOO.extension.MagnifierLens.superclass.constructor.call(this, el, lensCfg);
+	YAHOO.extension.MagnifierLens.superclass.constructor.call(this, el, lensCfg);
 };
 YAHOO.lang.extend(YAHOO.extension.MagnifierLens, YAHOO.widget.Panel, {
 
@@ -201,6 +201,14 @@ YAHOO.lang.extend(YAHOO.extension.MagnifierLens, YAHOO.widget.Panel, {
 			supercedes: false,
 			value: null
 		});
+
+		this.cfg.addProperty('showDelay', {
+			handler: null,
+			validator: null,
+			suppressEvent: false,
+			supercedes: false,
+			value: 0
+		});
 	},
 	handleImageLoaded: function() {
 		this.setImageDimensions();
@@ -222,10 +230,10 @@ YAHOO.lang.extend(YAHOO.extension.MagnifierLens, YAHOO.widget.Panel, {
 		}
 		this.image.src = args[0];
 	},
-    setOffsets: function(newLeft, newTop) {
-        YAHOO.util.Dom.setStyle(this.image, 'top', newTop + 'px');
-        YAHOO.util.Dom.setStyle(this.image, 'left', newLeft + 'px');
-    },
+	setOffsets: function(newLeft, newTop) {
+		YAHOO.util.Dom.setStyle(this.image, 'top', newTop + 'px');
+		YAHOO.util.Dom.setStyle(this.image, 'left', newLeft + 'px');
+	},
 	show: function() {
 		var oThis = this;
 		this.isShowPending = true;
@@ -234,7 +242,7 @@ YAHOO.lang.extend(YAHOO.extension.MagnifierLens, YAHOO.widget.Panel, {
 				oThis.cfg.setProperty('context', oThis.context);
 				YAHOO.extension.MagnifierLens.superclass.show.call(oThis);
 			}
-		}, this.showDelay);
+		}, this.cfg.getProperty("showDelay"));
 	},
 	hide: function() {
 		this.isShowPending = false;
@@ -302,7 +310,7 @@ YAHOO.lang.extend(YAHOO.extension.MagnifierLens, YAHOO.widget.Panel, {
 
 YAHOO.extension.CursorPanel = function(el, cpCfg) {
 
-    if (!cpCfg) { cpCfg = {}; }
+	if (!cpCfg) { cpCfg = {}; }
 
 	//override defaults
 	if (typeof(cpCfg.visible) == 'undefined') cpCfg.visible = false;
@@ -310,7 +318,7 @@ YAHOO.extension.CursorPanel = function(el, cpCfg) {
 	if (typeof(cpCfg.close) == 'undefined') cpCfg.close = false;
 	if (typeof(cpCfg.underlay) == 'undefined') cpCfg.underlay = 'none';
 
-    YAHOO.extension.CursorPanel.superclass.constructor.call(this, el, cpCfg);
+	YAHOO.extension.CursorPanel.superclass.constructor.call(this, el, cpCfg);
 };
 YAHOO.lang.extend(YAHOO.extension.CursorPanel, YAHOO.widget.Panel, {
 
@@ -403,32 +411,32 @@ YAHOO.lang.extend(YAHOO.extension.CursorPanel, YAHOO.widget.Panel, {
 		var myRegion = YAHOO.util.Dom.getRegion(this.element);
 		return [myRegion.left - this.parentRegion.left, myRegion.top - this.parentRegion.top];
 	},
-    setPosition: function(coords) {
-        x = coords[0] - (this.realWidth / 2);
-        y = coords[1] - (this.realHeight / 2);
-        YAHOO.util.Dom.setXY(this.element, [x,y]);
-        this.onRegionChanged.fire();
-    },
-    handleMouseMove: function(evt) {
-        if (!(this.cfg.getProperty('visible') || this.isShowPending)) {
-            return false;
-        }
-        var coords = YAHOO.util.Event.getXY(evt);
-        var maxX = this.boundaryRegion.right - (this.realWidth / 2);
-        var minX = this.boundaryRegion.left + (this.realWidth / 2);
-        var maxY = this.boundaryRegion.bottom - (this.realHeight / 2);
-        var minY = this.boundaryRegion.top + (this.realHeight / 2);
-        if (coords[0] > maxX) coords[0] = maxX;
-        if (coords[0] < minX) coords[0] = minX;
-        if (coords[1] > maxY) coords[1] = maxY;
-        if (coords[1] < minY) coords[1] = minY;
-        this.setPosition(coords);
-    },
-    handleParentMouseOver: function() {
+	setPosition: function(coords) {
+		x = coords[0] - (this.realWidth / 2);
+		y = coords[1] - (this.realHeight / 2);
+		YAHOO.util.Dom.setXY(this.element, [x,y]);
+		this.onRegionChanged.fire();
+	},
+	handleMouseMove: function(evt) {
+		if (!(this.cfg.getProperty('visible') || this.isShowPending)) {
+			return false;
+		}
+		var coords = YAHOO.util.Event.getXY(evt);
+		var maxX = this.boundaryRegion.right - (this.realWidth / 2);
+		var minX = this.boundaryRegion.left + (this.realWidth / 2);
+		var maxY = this.boundaryRegion.bottom - (this.realHeight / 2);
+		var minY = this.boundaryRegion.top + (this.realHeight / 2);
+		if (coords[0] > maxX) coords[0] = maxX;
+		if (coords[0] < minX) coords[0] = minX;
+		if (coords[1] > maxY) coords[1] = maxY;
+		if (coords[1] < minY) coords[1] = minY;
+		this.setPosition(coords);
+	},
+	handleParentMouseOver: function() {
 		this.parentRegion = YAHOO.util.Dom.getRegion(this.cfg.getProperty("parentElement"));
-        this.show();
-    },
-    handleMouseOut: function(evt) {
+		this.show();
+	},
+	handleMouseOut: function(evt) {
 		//if the relatedTarget is any element contained in the cursor box or the boundary,
 		//the event should be ignored
 		var ignoreNodes = [ this.getBoundary() ]
@@ -456,7 +464,7 @@ YAHOO.lang.extend(YAHOO.extension.CursorPanel, YAHOO.widget.Panel, {
 		
 		this.onParentMouseOut.fire(evt);
 		this.hide();
-    },
+	},
 	show: function() {
 		if (this.isShowPending) return;
 		var oThis = this;

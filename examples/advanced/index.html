@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<!-- YUI Dependencies -->
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/container/assets/skins/sam/container.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/container/container-min.js"></script>
+
+<!-- Magnifier Lib -->
+<link rel="stylesheet" type="text/css" href="../../default.css" />
+<script type="text/javascript" src="../../magnifier.js"></script>
+
+<!-- Custom JS -->
+<script type="text/javascript">
+	YAHOO.util.Event.addListener(window, "load", function() {
+		panel = new YAHOO.extension.Magnifier(
+			//the anchor that wraps around the small image (the only required parameter)
+			"image_anchor",
+
+			//magnifier main config
+			{
+				image: "my_image",	//the small version of the image that is initially visible
+
+				showDelay: 250			//wait a quarter second before activating the magnifier to
+														//prevent users from getting annoyed when this pops up when
+														//they didn't want it to
+			},
+
+			//lens panel config
+			{
+				width: '400px',			//the aspect ratio of the lens does *not* have to match that
+				height:	'250px',		//the image, but the size and aspect ratio of the cursor panel
+														//will be affected by the size and aspect ratio of the lens
+														//panel
+
+				//showDelay:				//you can set showDelay different from the magnifier here, but
+														//it is not recommended
+				
+				//imageUrl: 'images/big.jpg',
+														//the large image used in the lens panel is normally extracted
+														//from the href attribute of the anchor element, but you can
+														//set it manually here if you want. this is also a good way to
+														//change the image after the magnifier has already been loaded.
+
+				loadingImageUrl: 'image/loading.gif',
+														//if the magnifier is activated before the large lens image has
+														//finished loading, this image will be displayed until it finishes.
+														//obviously this image should be small (so it loads fast) or you
+														//should take measures to ensure it is loaded before the magnifier
+														//can be activated.
+
+				context: [ 'wrapper', 'tl', 'tr' ]
+														//you can place the lens wherever you want -- the default is the
+														//top right corner of the anchor element, but here it makes more
+														//sense to use the wrapper
+			},
+
+			//cursor panel config
+			{
+				parentElement: 'my_image',		//when the cursor panel reports it offsets, they
+																			//are relative to this element. within the context
+																			//of the magnifier, it really only makes sense for
+																			//this to be the small image, which it is set to by
+																			//default so this is just redundant.
+
+				extendedBoundary: 'wrapper'		//you can allow the cursor box to go outside of the
+																			//boundaries of the parent element. unless you've
+																			//got a crazy trick up your sleeve, this should be
+																			//an ancestor of the parentElement node.
+			}
+		);
+	});
+</script>
+
+<!-- Custom Styling -->
+<style type="text/css">
+	/**
+	 * Setting no margin and padding on body is a YUI recommendation.
+	 * The image anchor *must* be a block element for magnifier.js to work.
+	 * Other styling is just my preference.
+	 */
+	body {margin:0; padding:0; background: #555;}
+	div#wrapper {width: 320px; height: 320px; background:#aaa;}
+	a#image_anchor {margin: 0 auto; padding: 10px 0; display: block; width: 300px;}
+	a#image_anchor img {margin: 0; padding: 0; border-width: 0;}
+</style>
+
+</head>
+<body>
+
+<!-- Custom HTML -->
+<div id="wrapper">
+	<a id="image_anchor" href="images/big.jpg">
+		<img id="my_image" src="images/small.jpg" />
+	</a>
+</div>
+
+</body>
+</html>
