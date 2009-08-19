@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<!-- YUI Dependencies -->
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/container/assets/skins/sam/container.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/container/container-min.js"></script>
+
+<!-- Magnifier Lib -->
+<script type="text/javascript" src="../../magnifier.js"></script>
+
+<!-- Custom JS -->
+<script type="text/javascript">
+	YAHOO.util.Event.addListener(window, "load", function() {
+			panel = new YAHOO.extension.Magnifier("image_anchor");
+	});
+</script>
+
+<!-- Custom Styling -->
+<style type="text/css">
+	body { margin:0; padding:0; }
+	a#image_anchor { border: 1px solid black; display: block; width: 300px; height: 300px; margin: 0; padding: 0; }
+	a#image_anchor img { margin: 0; padding: 0; border-width: 0; }
+
+	div.cursor-panel-container {border:2px solid #fff; }
+		div.cursor-panel-container div.yui-overlay {background:white; border:1px solid #fff; opacity:0.8; cursor:crosshair; filter: alpha(opacity = 80); }
+		body.ie6 div.cursor-panel-container div.yui-overlay { background:none;}
+
+	div.lens-panel-container {background:bottom right no-repeat; padding:0;}
+		div.lens-panel-container div.yui-panel{padding:0; background:#000;}
+			div.lens-panel-container div.yui-panel div.bd  {background:#fff; text-align:center;}
+			div.lens-panel-container div.yui-panel div.bd img.lens-panel-loading-image  {margin:0;}
+</style>
+
+</head>
+<body>
+
+<!-- Custom HTML -->
+<a id="image_anchor" href="images/big.jpg">
+    <img src="images/small.jpg" />
+</a>
+
+</body>
+</html>
