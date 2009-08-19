@@ -8,6 +8,7 @@
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/container/container-min.js"></script>
 
 <!-- Magnifier Lib -->
+<link rel="stylesheet" type="text/css" href="../../default.css" />
 <script type="text/javascript" src="../../magnifier.js"></script>
 
 <!-- Custom JS -->
@@ -19,18 +20,14 @@
 
 <!-- Custom Styling -->
 <style type="text/css">
-	body { margin:0; padding:0; }
-	a#image_anchor { border: 1px solid black; display: block; width: 300px; height: 300px; margin: 0; padding: 0; }
+	/**
+	 * Setting no margin and padding on body is a YUI recommendation.
+	 * The image anchor *must* be a block element for magnifier.js to work.
+	 * Other styling is just my preference.
+	 */
+	body { margin:0; padding:0; background: gray; }
+	a#image_anchor { margin: 0; padding: 0; display: block; width: 300px; }
 	a#image_anchor img { margin: 0; padding: 0; border-width: 0; }
-
-	div.cursor-panel-container {border:2px solid #fff; }
-		div.cursor-panel-container div.yui-overlay {background:white; border:1px solid #fff; opacity:0.8; cursor:crosshair; filter: alpha(opacity = 80); }
-		body.ie6 div.cursor-panel-container div.yui-overlay { background:none;}
-
-	div.lens-panel-container {background:bottom right no-repeat; padding:0;}
-		div.lens-panel-container div.yui-panel{padding:0; background:#000;}
-			div.lens-panel-container div.yui-panel div.bd  {background:#fff; text-align:center;}
-			div.lens-panel-container div.yui-panel div.bd img.lens-panel-loading-image  {margin:0;}
 </style>
 
 </head>

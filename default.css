@@ -1,0 +1,7 @@
+div.cursor-panel-container {border:1px solid #eee;}
+	div.cursor-panel-container div.yui-overlay {background:#ddd; border:1px solid #ddd; opacity:0.4; cursor:crosshair; filter: alpha(opacity = 40);}
+
+div.lens-panel-container {background:bottom right no-repeat; padding:0;}
+	div.lens-panel-container div.yui-panel{padding:0; background:#000;}
+		div.lens-panel-container div.yui-panel div.bd {background:#fff; text-align:center;}
+		div.lens-panel-container div.yui-panel div.bd img.lens-panel-loading-image {margin:0;}
