@@ -50,7 +50,7 @@
 														//should take measures to ensure it is loaded before the magnifier
 														//can be activated.
 
-				context: [ 'wrapper', 'tl', 'tr' ]
+				context: [ 'wrapper', 'bl', 'br' ]
 														//you can place the lens wherever you want -- the default is the
 														//top right corner of the anchor element, but here it makes more
 														//sense to use the wrapper
@@ -84,6 +84,7 @@
 	div#wrapper {width: 320px; height: 320px; background:#aaa;}
 	a#image_anchor {margin: 0 auto; padding: 10px 0; display: block; width: 300px;}
 	a#image_anchor img {margin: 0; padding: 0; border-width: 0;}
+	div.lens-panel-container {border: 10px solid #eee;}
 </style>
 
 </head>
