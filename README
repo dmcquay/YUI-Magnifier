@@ -1,0 +1,26 @@
+#
+# How do I use YUI-Magnifier?
+#
+
+magnifier.js (or preferrably magnifier-min.js) is the main file you need. There is also a default CSS file to get you started (some styling is required to make the magnifier look right). I'm guessing you'll just use this CSS file to get you started and then you'll totally change it. You can pretty much style this widget however you want. You should probably just take a look in the examples directory to get you started.
+
+#
+# Why YUI-Magnifier?
+#
+
+There are many great magnifiers out there. So why make another? While working at Backcountry.com we needed a very specific set of functionality and it needed to be based on the YUI library. There wasn't anything that was quite right. So, like many open source projects, this began to itch a scratch.
+
+#
+# What are the main features of YUI-Magnifier?
+#
+
+ - Display a magnified portion of an image, which is controlled by where the mouse is hovering over the image
+ - Control over styling
+ - Control over location of magnification lens
+ - Magnified image can be wrapped by a larger element
+
+#
+# How can I contribute?
+#
+
+I'm open to ideas, patches and maybe even contributors. The best way to start is to share your patch or idea via an issue on GitHub. Or, just fork the project and make something awesome.
