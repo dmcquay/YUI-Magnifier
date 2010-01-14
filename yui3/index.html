@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>YUI 3 Image Zoom Utility</title>
+	<script type="text/javascript" src="http://yui.yahooapis.com/3.0.0/build/yui/yui-min.js"></script>
+	<script type="text/javascript" src="magnifier.js"></script>
+	<script type="text/javascript">
+		var lens;
+		YUI().use("gallery-lens", function(Y) {
+			Y.on('load', function(e) {
+				lens = new Y.Lens({
+					imageSrc: 'images/small.jpg',
+					loadingImageSrc: 'images/loading.gif',
+					align: {
+						node: '#main_image',
+						points: ['tl', 'tr']
+					},
+					visible: false
+				});
+				lens.render();
+				lens.show();
+				Y.on('click', Y.bind(lens.show, lens), '#show');
+				Y.on('click', Y.bind(lens.hide, lens), '#hide');
+			});
+		});
+	</script>
+	<style type="text/css">
+		/******** DEFAULT STYLING ***********/
+		.yui-lens-content {
+			border: 1px solid black;
+			width: 200px;
+			height: 150px;
+		}
+		.yui-lens-hidden {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<a id="image_anchor" href="images/big.jpg">
+		<img id="main_image" src="images/small.jpg" />
+	</a>
+	<br /><br />
+	<button id="show">Show</button>
+	<button id="hide">Hide</button>
+</body>
+</html>
