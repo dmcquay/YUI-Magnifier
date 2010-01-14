@@ -2,12 +2,14 @@
 <head>
 	<title>YUI 3 Image Zoom Utility</title>
 	<script type="text/javascript" src="http://yui.yahooapis.com/3.0.0/build/yui/yui-min.js"></script>
-	<script type="text/javascript" src="magnifier.js"></script>
+	<script type="text/javascript" src="lens.js"></script>
+	<script type="text/javascript" src="cursorBox.js"></script>
 	<script type="text/javascript">
 		var lens;
-		YUI().use("gallery-lens", function(Y) {
+		YUI().use('gallery-lens', 'gallery-cursor-box', function(Y) {
 			Y.on('load', function(e) {
 				lens = new Y.Lens({
+					visible: false,
 					imageSrc: 'images/big.jpg',
 					loadingImageSrc: 'images/loading.gif',
 					align: {
@@ -20,17 +22,34 @@
 				lens.show();
 				Y.on('click', Y.bind(lens.show, lens), '#show');
 				Y.on('click', Y.bind(lens.hide, lens), '#hide');
+				
+				cursorBox = new Y.CursorBox({
+					visible: false,
+					parentElement: Y.one('#main_image')
+				});
+				cursorBox.render();
+				cursorBox.show();
 			});
 		});
 	</script>
 	<style type="text/css">
-		/******** DEFAULT STYLING ***********/
+		/******** LENS ***********/
 		.yui-lens-content {
 			border: 1px solid black;
 			width: 200px;
 			height: 150px;
 		}
 		.yui-lens-hidden {
+			display: none;
+		}
+		
+		/******** CURSOR BOX **********/
+		.yui-cursorBox-content {
+			border: 1px solid black;
+			width: 80px;
+			height: 50px;
+		}
+		.yui-cursorBox-hidden {
 			display: none;
 		}
 	</style>

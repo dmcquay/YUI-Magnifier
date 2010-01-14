@@ -13,7 +13,7 @@ YUI().add('gallery-lens', function (Y) {
     		value: 0
     	},
     	showDelay: {
-    		value: 1000
+    		value: 0
     	}
     };
     
@@ -23,7 +23,8 @@ YUI().add('gallery-lens', function (Y) {
     Lens.IMAGE_TEMPLATE = '<img class="' + Lens.IMAGE_CLASS + '" />';
     Lens.LOADING_IMAGE_TEMPLATE = '<img class="' + Lens.LOADING_IMAGE_CLASS + '" />';
     
-    Lens.HTML_PARSER = {};
+    Lens.HTML_PARSER = {},
+    
     Y.extend(Lens, Y.Overlay, {
     	renderUI: function() {
     		//styling we are dependent on
