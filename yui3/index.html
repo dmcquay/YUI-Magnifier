@@ -8,13 +8,13 @@
 		YUI().use("gallery-lens", function(Y) {
 			Y.on('load', function(e) {
 				lens = new Y.Lens({
-					imageSrc: 'images/small.jpg',
+					imageSrc: 'images/big.jpg',
 					loadingImageSrc: 'images/loading.gif',
 					align: {
 						node: '#main_image',
 						points: ['tl', 'tr']
 					},
-					visible: false
+					showDelay: 0
 				});
 				lens.render();
 				lens.show();
